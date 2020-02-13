@@ -4,4 +4,11 @@
 
 Easier way to learn regex.
 
+## Mockup
+
 <img src="regex-breakfast.png">
+
+## Technologies
+
+* Vue.js
+* Vuetify

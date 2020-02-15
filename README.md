@@ -1,6 +1,6 @@
 <img src="regex.png">
 
-*livestreams related to this repo can be found on the Faraday Academy YouTube channel:* https://www.youtube.com/channel/FaradayAcademy
+*livestreams related to this repo can be found on the Faraday Academy YouTube channel:* https://www.youtube.com/c/FaradayAcademy
 
 # Regex Breakfast
 

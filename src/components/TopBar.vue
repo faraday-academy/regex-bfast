@@ -5,7 +5,7 @@
       dark
     >
 
-      <v-toolbar-title>Regext Breakfast</v-toolbar-title>
+      <v-toolbar-title>Regex Breakfast</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

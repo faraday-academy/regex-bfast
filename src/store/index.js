@@ -18,9 +18,6 @@ export default new Vuex.Store({
   mutations: {
     navigateToChallenge(state, index) {
       state.currentIndex = index
-    },
-    nextChallenge(state) {
-      state.currentIndex += 1
     }
   },
   actions: {

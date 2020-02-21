@@ -5,7 +5,11 @@
         <v-col>
           <h2
             v-html="$options.filters.highlightFilter(
-              $store.getters.currentChallenge.fullText, userRegex, $style)"
+              $store.getters.currentChallenge.fullText,
+              userRegex,
+              userFlags,
+              $style
+            )"
             class="mt-5 mb-4"
           >
           </h2>
@@ -56,6 +60,14 @@
         </v-col>
       </v-row>
     </v-col>
+    <v-snackbar
+      v-model="snackbar"
+      color="error"
+      top
+      right
+    >
+      Incorrect answer. Try again.
+    </v-snackbar>
   </v-row>
 </template>
 
@@ -67,13 +79,14 @@ export default {
       userFlags: '',
       regexError: false,
       errorMessage: '',
-      flagsError: false
+      flagsError: false,
+      snackbar: false
     }
   },
   filters: {
-    highlightFilter(value, userRegex, $style) {
+    highlightFilter(value, userRegex, userFlags, $style) {
       try {
-        let regex = new RegExp(userRegex)
+        let regex = new RegExp(userRegex, userFlags)
         let newValue = value.replace(
           regex, (text) => `<span class="${$style.highlight}">${text}</span>`
         )
@@ -86,7 +99,7 @@ export default {
   methods: {
     checkValidRegex() {
       try {
-        new RegExp(this.userRegex)
+        new RegExp(this.userRegex, this.userFlags)
         this.regexError = false
         this.errorMessage = ''
       } catch (err) {
@@ -96,11 +109,12 @@ export default {
     },
     nextChallenge() {
       let currentIndex = this.$store.state.currentIndex
-      let regex = new RegExp(this.userRegex)
-      if (regex.test(this.$store.getters.currentChallenge.fullText)) {
-        this.$store.commit('navigateToChallenge', currentIndex + 1)
+      let regex = new RegExp(this.userRegex, this.userFlags)
+
+      if (regex.test(this.$store.getters.currentChallenge.toMatch)) {
+        this.$store.dispatch('navigateToChallenge', currentIndex + 1)
       } else {
-        console.log('no!')
+        this.snackbar = true
       }
     }
   }

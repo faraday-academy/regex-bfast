@@ -34,7 +34,7 @@
             @click="navigateToChallenge(i)"
           >
             <v-list-item-title>
-              {{ challenge.name }}
+              {{ `${i+1} - ${challenge.name}` }}
             </v-list-item-title>
           </v-list-item>
 
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data: () => {
@@ -57,7 +57,7 @@ export default {
     ...mapState(['challenges', 'currentIndex'])
   },
   methods: {
-    ...mapMutations(['navigateToChallenge'])
+    ...mapActions(['navigateToChallenge'])
   }
 }
 </script>

@@ -3,6 +3,11 @@
     <v-col sm="10" md="8">
       <v-row cols="12">
         <v-col>
+          <h1>{{ $store.getters.currentChallenge.name }}</h1>
+        </v-col>
+      </v-row>
+      <v-row cols="12">
+        <v-col>
           <h2
             v-html="$options.filters.highlightFilter(
               $store.getters.currentChallenge.fullText,
@@ -11,6 +16,7 @@
               $style
             )"
             class="mt-5 mb-4"
+            style="white-space: pre;"
           >
           </h2>
         </v-col>
@@ -38,7 +44,7 @@
 
         <v-col cols="3">
           <v-text-field
-            :disabled="!$store.getters.currentChallenge.needsFlags"
+            :disabled="!$store.getters.currentChallenge.flags"
             outlined
             v-model="userFlags"
             placeholder="Enter Flags"
@@ -62,11 +68,11 @@
     </v-col>
     <v-snackbar
       v-model="snackbar"
-      color="error"
+      :color="snackColor"
       top
       right
     >
-      Incorrect answer. Try again.
+      {{ snackMessage }}
     </v-snackbar>
   </v-row>
 </template>
@@ -80,7 +86,9 @@ export default {
       regexError: false,
       errorMessage: '',
       flagsError: false,
-      snackbar: false
+      snackbar: false,
+      snackColor: 'error',
+      snackMessage: 'Incorrect answer. Try again.'
     }
   },
   filters: {
@@ -110,10 +118,29 @@ export default {
     nextChallenge() {
       let currentIndex = this.$store.state.currentIndex
       let regex = new RegExp(this.userRegex, this.userFlags)
+      const { toMatch, flags } = this.$store.getters.currentChallenge
+      let unmatched = []
+      let valid = false
 
-      if (regex.test(this.$store.getters.currentChallenge.toMatch)) {
+      if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
+        valid = true
+        unmatched = toMatch.filter((str) => {
+          let matched = str.match(regex)
+          return !matched || matched[0] !== str
+        })
+      }
+
+      if (valid && !unmatched.length) {
+        this.userRegex = ''
+        this.userFlags = ''
+        this.snackColor = 'success'
+        this.snackMessage = 'Great job! Challenge completed.'
+        this.snackbar = true
+
         this.$store.dispatch('navigateToChallenge', currentIndex + 1)
       } else {
+        this.snackColor = 'error'
+        this.snackMessage = 'Incorrect answer. Try again.'
         this.snackbar = true
       }
     }

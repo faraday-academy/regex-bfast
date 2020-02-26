@@ -118,16 +118,23 @@ export default {
     nextChallenge() {
       let currentIndex = this.$store.state.currentIndex
       let regex = new RegExp(this.userRegex, this.userFlags)
-      const { toMatch, flags } = this.$store.getters.currentChallenge
+      const { fullText, toMatch, flags } = this.$store.getters.currentChallenge
       let unmatched = []
       let valid = false
 
+      let notToMatch = fullText
+      toMatch.forEach((value) => {
+        let re = new RegExp(value, 'g')
+        notToMatch = notToMatch.replace(re, '')
+      })
+
       if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
-        valid = true
         unmatched = toMatch.filter((str) => {
           let matched = str.match(regex)
           return !matched || matched[0] !== str
         })
+
+        valid = !regex.test(notToMatch)
       }
 
       if (valid && !unmatched.length) {

@@ -53,7 +53,7 @@ export default [
     fullText: 'Vermont Maple Syrup',
     toMatch: ['Vermont'],
     flags: '',
-    info: 'You can use regex to match one part of a string. In this case, use the techniques you have learned in previous lessons to match the word, "Maple".'
+    info: 'You can use regex to match only what\'s at the beginning of a string. Use the \'^\' at the start of your regex to match the word, "Vermont".'
   },
   {
     name: 'Match Last Word in Text',
@@ -75,5 +75,12 @@ export default [
     toMatch: ['plate'],
     flags: 'g',
     info: 'You can use regex to match a string multiple times...'
+  },
+  {
+    name: 'Password Regquirements',
+    fullText: 'Abc$123\n123Abc_zyx\nDunkin_donuts\nBreakfast_is_gre@t',
+    toMatch: ['123Abc_zyx', 'Breakfast_is_gre@t'],
+    flags: 'g',
+    info: 'What\'s an important part of any healthy breakfast? Good password requirements! Use regex to select only the passwords that match the following criteria: 1 Uppercase, 1 Lowercase, 1 Number, 1 Special Character, At Least 10 Characters Long.'
   }
 ]

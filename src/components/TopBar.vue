@@ -9,7 +9,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn outlined @click="drawer = true">
+      <v-btn outlined tile @click="drawer = true">
         Challenges
       </v-btn>
     </v-app-bar>

@@ -7,8 +7,8 @@
         </v-col>
       </v-row>
       <v-row cols="12">
-        <v-col>
-          <h2
+        <v-col class="my-5">
+          <!-- <h2
             v-html="$options.filters.highlightFilter(
               $store.getters.currentChallenge.fullText,
               userRegex,
@@ -17,6 +17,21 @@
             )"
             class="mt-5 mb-4"
             style="white-space: pre;"
+            
+          >
+            
+          </h2> -->
+          <h2
+            v-for="(text, i) in $store.getters.currentChallenge.fullText"
+            :key="text + i"
+            v-html="$options.filters.highlightFilter(
+              text,
+              userRegex,
+              userFlags,
+              $style
+            )"
+            style="white-space: pre;"
+            class="elevation-3 pa-4 mb-2"
           >
           </h2>
         </v-col>
@@ -57,6 +72,7 @@
         <v-col cols="12">
           <v-card
             outlined
+            tile
           >
             <v-card-text>
               <v-icon color="info">mdi-alert-circle-outline</v-icon>
@@ -116,9 +132,20 @@ export default {
       }
     },
     nextChallenge() {
+      const { fullText, toMatch, flags, forbiddenPatterns } = this.$store.getters.currentChallenge
+
+      let forbidden = forbiddenPatterns.some((value) => {
+        return this.userRegex.includes(value)
+      })
+      if (forbidden) {
+        this.snackColor = 'warning'
+        this.snackMessage = 'You are using a Regex Pattern that is outside of the scope of this challenge. Please refactor.'
+        this.snackbar = true
+        return false
+      }
+
       let currentIndex = this.$store.state.currentIndex
       let regex = new RegExp(this.userRegex, this.userFlags)
-      const { fullText, toMatch, flags } = this.$store.getters.currentChallenge
       let unmatched = []
       let valid = false
 
@@ -158,4 +185,9 @@ export default {
 <style lang="sass" module>
 .highlight
   background-color: yellow
+</style>
+
+<style lang="sass">
+.v-text-field fieldset, .v-text-field .v-input__control, .v-text-field div.v-input__slot
+  border-radius: 0
 </style>

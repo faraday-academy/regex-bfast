@@ -8,19 +8,6 @@
       </v-row>
       <v-row cols="12">
         <v-col class="my-5">
-          <!-- <h2
-            v-html="$options.filters.highlightFilter(
-              $store.getters.currentChallenge.fullText,
-              userRegex,
-              userFlags,
-              $style
-            )"
-            class="mt-5 mb-4"
-            style="white-space: pre;"
-            
-          >
-            
-          </h2> -->
           <h2
             v-for="(text, i) in $store.getters.currentChallenge.fullText"
             :key="text + i"
@@ -132,7 +119,7 @@ export default {
       }
     },
     nextChallenge() {
-      const { fullText, toMatch, flags, forbiddenPatterns } = this.$store.getters.currentChallenge
+      const { fullText, pattern, flags, forbiddenPatterns } = this.$store.getters.currentChallenge
 
       let forbidden = forbiddenPatterns.some((value) => {
         return this.userRegex.includes(value)
@@ -145,23 +132,28 @@ export default {
       }
 
       let currentIndex = this.$store.state.currentIndex
-      let regex = new RegExp(this.userRegex, this.userFlags)
+      let regex = new RegExp(pattern, flags)
+      let userRegex = new RegExp(this.userRegex, this.userFlags)
       let unmatched = []
       let valid = false
 
-      let notToMatch = fullText
-      toMatch.forEach((value) => {
-        let re = new RegExp(value, 'g')
-        notToMatch = notToMatch.replace(re, '')
+      let notToMatch = [...fullText]
+      notToMatch.forEach((value, i) => {
+        notToMatch[i] = value.replace(regex, '')
       })
 
       if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
-        unmatched = toMatch.filter((str) => {
-          let matched = str.match(regex)
-          return !matched || matched[0] !== str
+        let defaultMatches = []
+        let userMatches = []
+        fullText.forEach((value) => {
+          defaultMatches = value.match(regex)
+          userMatches = value.match(userRegex)
+        })
+        unmatched = defaultMatches.filter((value) => {
+          return !userMatches.some((str) => str === value)
         })
 
-        valid = !regex.test(notToMatch)
+        valid = !userRegex.test(notToMatch)
       }
 
       if (valid && !unmatched.length) {

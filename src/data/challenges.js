@@ -91,7 +91,7 @@ export default [
     name: 'Match Subdomains',
     fullText: ['http://example.com\nhttps://mysite.example.com\nhttps://www.example.com\nhttp://blog.example.com'],
     pattern: 'https?://(?!www)([a-z0-9]+[.])\w+[.]com',
-    forbiddenPatterns: ['.'],
+    forbiddenPatterns: [],
     flags: 'g',
     info: 'Match only the subdomains and not the domains without a subdomain. \'www\' counts as part of the domain and not a subdomain. Your regex should match both http and https.'
   },
@@ -106,9 +106,10 @@ export default [
   {
     name: 'Password Requirements',
     fullText: ['Abc$123\n123Abc_zyx\nDunkin_donuts\nBreakfast_is_gre@t'],
-    pattern: '',
+    pattern: '123Abc_zyx',
     forbiddenPatterns: ['.'],
     flags: 'g',
-    info: 'What\'s an important part of any healthy breakfast? Good password requirements! Use regex to select only the passwords that match the following criteria: 1 Uppercase, 1 Lowercase, 1 Number, 1 Special Character, At Least 10 Characters Long.'
+    info: 'What\'s an important part of any healthy breakfast? Good password requirements! Use regex to select only the passwords that match the following criteria: 1 Uppercase, 1 Lowercase, 1 Number, 1 Special Character, At Least 10 Characters Long.',
+    hints: []
   }
 ]

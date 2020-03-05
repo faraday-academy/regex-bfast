@@ -81,6 +81,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   data() {
     return {
@@ -132,15 +134,10 @@ export default {
       }
 
       let currentIndex = this.$store.state.currentIndex
-      let regex = new RegExp(pattern, flags)
+      let solutionRegex = new RegExp(pattern, flags)
       let userRegex = new RegExp(this.userRegex, this.userFlags)
       let unmatched = []
       let valid = false
-
-      let notToMatch = [...fullText]
-      notToMatch.forEach((value, i) => {
-        notToMatch[i] = value.replace(regex, '')
-      })
 
       if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
         let defaultMatches = []
@@ -151,15 +148,25 @@ export default {
         // defaultMatches, as well as an array of what the user
         // actually matched with their regex, userMatches
         fullText.forEach((value) => {
-          defaultMatches.push(value.match(regex))
+          defaultMatches.push(value.match(solutionRegex))
           userMatches.push(value.match(userRegex))
         })
         // the array of items that were supposed to be matched,
         // defaultMatches is looped through here to determine
         // if the user failed to match any item that they were
         // supposed to match
-        unmatched = defaultMatches.filter((value) => {
-          return !userMatches.some((str) => str === value)
+        unmatched = defaultMatches.filter((value, i) => {
+          if (value === null) {
+            return !(userMatches[i] === null)
+          }
+          const doesMatch = _.isMatch(userMatches[i], value)
+          return !doesMatch
+        })
+
+        let notToMatch = [...fullText]
+        // removes characters that are supposed to be matched
+        fullText.forEach((value, i) => {
+          notToMatch[i] = value.replace(solutionRegex, '')
         })
 
         valid = !userRegex.test(notToMatch)

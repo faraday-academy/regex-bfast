@@ -145,10 +145,19 @@ export default {
       if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
         let defaultMatches = []
         let userMatches = []
+
+        // this loops through full text to populate an
+        // array of things that were supposed to be matched,
+        // defaultMatches, as well as an array of what the user
+        // actually matched with their regex, userMatches
         fullText.forEach((value) => {
-          defaultMatches = value.match(regex)
-          userMatches = value.match(userRegex)
+          defaultMatches.push(value.match(regex))
+          userMatches.push(value.match(userRegex))
         })
+        // the array of items that were supposed to be matched,
+        // defaultMatches is looped through here to determine
+        // if the user failed to match any item that they were
+        // supposed to match
         unmatched = defaultMatches.filter((value) => {
           return !userMatches.some((str) => str === value)
         })

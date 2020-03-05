@@ -8,12 +8,28 @@ export default [
     info: 'Regex will match characters from right to left. Type exact characters to match.'
   },
   {
+    name: 'Match One Character',
+    fullText: ['oatmeal'],
+    pattern: 'm',
+    forbiddenPatterns: ['.'],
+    flags: '',
+    info: 'You don\'t have to match the whole word. Try matching just the letter \'m\'.'
+  },
+  {
     name: 'Match Lowercase',
+    fullText: ['toast'],
+    pattern: '[a-z]',
+    forbiddenPatterns: ['.'],
+    flags: '',
+    info: 'Match only the \'t\' using a capture group, [a-z].'
+  },
+  {
+    name: 'Using Quantifiers',
     fullText: ['toast'],
     pattern: '[a-z]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Use a capture group for lowercase letters: [a-z]+.'
+    info: 'Match the whole word by adding the quantifier, \'+\'.'
   },
   {
     name: 'Match Uppercase',
@@ -60,7 +76,7 @@ export default [
     fullText: ['Vermont Maple Syrup', 'Maple Syrup from Vermont', 'Vermont has the Best Syrup', 'Who likes Vermont Syrup?'],
     pattern: '^Vermont',
     forbiddenPatterns: ['.'],
-    flags: 'g',
+    flags: '',
     info: 'You can use regex to match only what\'s at the beginning of a string. Use the \'^\' at the start of your regex to match the word, "Vermont".'
   },
   {

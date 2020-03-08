@@ -5,7 +5,8 @@ export default [
     pattern: 'oatmeal',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Regex will match characters from right to left. Type exact characters to match.'
+    info: 'Regex will match characters from right to left. Type exact characters to match.',
+    hints: []
   },
   {
     name: 'Match One Character',
@@ -13,7 +14,8 @@ export default [
     pattern: 'm',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'You don\'t have to match the whole word. Try matching just the letter \'m\'.'
+    info: 'You don\'t have to match the whole word. Try matching just the letter \'m\'.',
+    hints: []
   },
   {
     name: 'Match Lowercase',
@@ -21,7 +23,8 @@ export default [
     pattern: '[a-z]',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Match only the \'t\' using a capture group, [a-z].'
+    info: 'Match only the \'t\' using a capture group, [a-z].',
+    hints: []
   },
   {
     name: 'Using Quantifiers',
@@ -29,7 +32,8 @@ export default [
     pattern: '[a-z]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Match the whole word by adding the quantifier, \'+\'.'
+    info: 'Match the whole word by adding the quantifier, \'+\'.',
+    hints: []
   },
   {
     name: 'Match Uppercase',
@@ -37,7 +41,8 @@ export default [
     pattern: '[A-Z]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Use a capture group for uppercase letters: [A-Z]+.'
+    info: 'Use a capture group for uppercase letters: [A-Z]+.',
+    hints: []
   },
   {
     name: 'Match Mixed-cases',
@@ -45,7 +50,8 @@ export default [
     pattern: '[A-Za-z]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Use a capture group for uppercase letters: [A-Za-z]+.'
+    info: 'Use a capture group for uppercase letters: [A-Za-z]+.',
+    hints: []
   },
   {
     name: 'Match Numbers',
@@ -53,7 +59,8 @@ export default [
     pattern: '[0-9]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'Use a capture group for numbers: [0-9]+.'
+    info: 'Use a capture group for numbers: [0-9]+.',
+    hints: []
   },
   {
     name: 'Phrases',
@@ -61,7 +68,8 @@ export default [
     pattern: '[A-Z a-z]+',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'You can match the spaces in a string as well by just adding the space character in your regex. Match with spaces: [A-Z a-z]+.'
+    info: 'You can match the spaces in a string as well by just adding the space character in your regex. Match with spaces: [A-Z a-z]+.',
+    hints: []
   },
   {
     name: 'Match Word in Text',
@@ -69,7 +77,8 @@ export default [
     pattern: 'Maple',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'You can use regex to match one part of a string. In this case, use the techniques you have learned in previous lessons to match the word, "Maple".'
+    info: 'You can use regex to match one part of a string. In this case, use the techniques you have learned in previous lessons to match the word, "Maple".',
+    hints: []
   },
   {
     name: 'Match First Word in Text',
@@ -77,7 +86,8 @@ export default [
     pattern: '^Vermont',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'You can use regex to match only what\'s at the beginning of a string. Use the \'^\' at the start of your regex to match the word, "Vermont".'
+    info: 'You can use regex to match only what\'s at the beginning of a string. Use the \'^\' at the start of your regex to match the word, "Vermont".',
+    hints: []
   },
   {
     name: 'Match Last Word in Text',
@@ -85,15 +95,17 @@ export default [
     pattern: 'Syrup$',
     forbiddenPatterns: ['.'],
     flags: '',
-    info: 'You can use regex to match one part of a string. In this case, use the techniques you have learned in previous lessons to match the word, "Syrup".'
+    info: 'You can use regex to match one part of a string. In this case, use the techniques you have learned in previous lessons to match the word, "Syrup".',
+    hints: []
   },
   {
     name: 'Match Subdomains',
     fullText: ['http://example.com\nhttps://mysite.example.com\nhttps://www.example.com\nhttp://blog.example.com'],
-    pattern: 'https?://(?!www)([a-z0-9]+[.])\w+[.]com',
+    pattern: 'https?:\/\/(?!www)([a-z0-9]+[.])example[.]com',
     forbiddenPatterns: [],
     flags: 'g',
-    info: 'Match only the subdomains and not the domains without a subdomain. \'www\' counts as part of the domain and not a subdomain. Your regex should match both http and https.'
+    info: 'Match only the subdomains and not the domains without a subdomain. \'www\' counts as part of the domain and not a subdomain. Your regex should match both http and https.',
+    hints: []
   },
   {
     name: 'Use Global Flag',
@@ -101,7 +113,8 @@ export default [
     pattern: 'plate',
     forbiddenPatterns: ['.'],
     flags: 'g',
-    info: 'You can use regex to match a string multiple times...'
+    info: 'You can use regex to match a string multiple times...',
+    hints: []
   },
   {
     name: 'Password Requirements',

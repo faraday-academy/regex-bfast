@@ -70,18 +70,20 @@
       </v-row>
     </v-col>
     <v-snackbar
-      v-model="snackbar"
-      :color="snackColor"
+      v-model="snackbar.show"
+      :color="snackbar.color"
       top
       right
     >
-      {{ snackMessage }}
+      {{ snackbar.message }}
     </v-snackbar>
   </v-row>
 </template>
 
 <script>
 import _ from 'lodash'
+import doesMatch from '@/utils/doesMatch'
+import doesNotMatch from '@/utils/doesNotMatch'
 
 export default {
   data() {
@@ -91,9 +93,11 @@ export default {
       regexError: false,
       errorMessage: '',
       flagsError: false,
-      snackbar: false,
-      snackColor: 'error',
-      snackMessage: 'Incorrect answer. Try again.'
+      snackbar: {
+        show: false,
+        color: 'error',
+        message: 'Incorrect answer. Try again.'
+      }
     }
   },
   filters: {
@@ -127,63 +131,53 @@ export default {
         return this.userRegex.includes(value)
       })
       if (forbidden) {
-        this.snackColor = 'warning'
-        this.snackMessage = 'You are using a Regex Pattern that is outside of the scope of this challenge. Please refactor.'
-        this.snackbar = true
+        this.showSnackbar('warning')
         return false
       }
 
       let currentIndex = this.$store.state.currentIndex
       let solutionRegex = new RegExp(pattern, flags)
       let userRegex = new RegExp(this.userRegex, this.userFlags)
-      let unmatched = []
-      let valid = false
+
+      let validFlags = false
+      let isFullTextMatched = false
+      let isExtraTextMatched = false
 
       if (!flags || (this.userFlags && this.userFlags.includes(flags))) {
-        let defaultMatches = []
-        let userMatches = []
-
-        // this loops through full text to populate an
-        // array of things that were supposed to be matched,
-        // defaultMatches, as well as an array of what the user
-        // actually matched with their regex, userMatches
-        fullText.forEach((value) => {
-          defaultMatches.push(value.match(solutionRegex))
-          userMatches.push(value.match(userRegex))
-        })
-        // the array of items that were supposed to be matched,
-        // defaultMatches is looped through here to determine
-        // if the user failed to match any item that they were
-        // supposed to match
-        unmatched = defaultMatches.filter((value, i) => {
-          if (value === null) {
-            return !(userMatches[i] === null)
-          }
-          const doesMatch = _.isMatch(userMatches[i], value)
-          return !doesMatch
-        })
-
-        let notToMatch = [...fullText]
-        // removes characters that are supposed to be matched
-        fullText.forEach((value, i) => {
-          notToMatch[i] = value.replace(solutionRegex, '')
-        })
-
-        valid = !userRegex.test(notToMatch)
+        validFlags = true
+        const args = {
+          fullText,
+          solutionRegex,
+          userRegex
+        }
+        isFullTextMatched = doesMatch(args)
+        isExtraTextMatched = doesNotMatch(args)
       }
 
-      if (valid && !unmatched.length) {
+      if (validFlags && isFullTextMatched && isExtraTextMatched) {
         this.userRegex = ''
         this.userFlags = ''
-        this.snackColor = 'success'
-        this.snackMessage = 'Great job! Challenge completed.'
-        this.snackbar = true
+        this.showSnackbar('success')
 
         this.$store.dispatch('navigateToChallenge', currentIndex + 1)
       } else {
-        this.snackColor = 'error'
-        this.snackMessage = 'Incorrect answer. Try again.'
-        this.snackbar = true
+        this.showSnackbar('error')
+      }
+    },
+    showSnackbar(type) {
+      this.snackbar.color = type
+      this.snackbar.show = true
+
+      switch(type) {
+        case 'error':
+          this.snackbar.message = 'Incorrect answer. Try again.'
+          break
+        case 'warning':
+          this.snackbar.message = 'You are using a Regex Pattern that is outside of the scope of this challenge. Please refactor.'
+          break
+        case 'success':
+          this.snackbar.message = 'Great job! Challenge completed.'
+          break
       }
     }
   }

@@ -14,6 +14,9 @@ export default new Vuex.Store({
   getters: {
     currentChallenge(state) {
       return state.challenges[state.currentIndex]
+    },
+    percentDone(state) {
+      return Math.floor((state.currentIndex) / state.challenges.length * 100)
     }
   },
   mutations: {

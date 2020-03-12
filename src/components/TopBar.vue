@@ -1,11 +1,27 @@
 <template>
   <div>
     <v-app-bar
-      dense
       dark
     >
 
-      <v-toolbar-title>Regex Breakfast</v-toolbar-title>
+      <v-toolbar-title class="logo-text">
+        Regex Breakfast
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-card outlined rounded>
+        <v-card-text class="white--text pa-2">
+          <v-progress-linear
+            :value="$store.getters.percentDone"
+            height="10"
+            striped
+            color="#ec1a25"
+          ></v-progress-linear>
+          Challenge #{{ $store.state.currentIndex + 1 }}
+          out of {{ $store.state.challenges.length }}
+        </v-card-text>
+      </v-card>
 
       <v-spacer></v-spacer>
 
@@ -61,3 +77,15 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.logo-text
+  font-family: 'Monoton', cursive
+  color: #ff0080
+// .theme--dark.v-app-bar.v-toolbar.v-sheet
+//   background-color: #0a3154
+.v-toolbar__title
+  font-size: 2rem
+.theme--dark.v-card.v-card--outlined
+  border: 2px solid white
+</style>

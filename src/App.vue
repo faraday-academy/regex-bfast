@@ -24,7 +24,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Baloo+Thambi+2:400,700|Monoton|Nanum+Pen+Script&display=swap');
+// font-family: 'Baloo Thambi 2', sans-serif;
+// font-family: 'Nanum Pen Script', cursive;
+// font-family: 'Monoton', cursive;
+
 .slide-enter-active {
   transition: all .5s ease;
 }

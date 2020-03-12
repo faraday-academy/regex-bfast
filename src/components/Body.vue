@@ -3,7 +3,9 @@
     <v-col sm="10" md="8">
       <v-row cols="12">
         <v-col>
-          <h1>{{ $store.getters.currentChallenge.name }}</h1>
+          <h1>
+            {{ $store.getters.currentChallenge.name }}
+          </h1>
         </v-col>
       </v-row>
       <v-row cols="12">
@@ -192,4 +194,6 @@ export default {
 <style lang="sass">
 .v-text-field fieldset, .v-text-field .v-input__control, .v-text-field div.v-input__slot
   border-radius: 0
+h1
+  font-family: 'Baloo Thambi 2', sans-serif
 </style>

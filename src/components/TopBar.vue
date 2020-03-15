@@ -15,7 +15,6 @@
           <v-progress-linear
             :value="$store.getters.percentDone"
             height="10"
-            striped
             color="#ec1a25"
           ></v-progress-linear>
           Challenge #{{ $store.state.currentIndex + 1 }}
@@ -79,11 +78,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+// $pink: #ff0080
+$orange: #fd8f50
+$med-pink: darken($orange, 5%)
+$dark-pink: darken($orange, 10%)
 .logo-text
   font-family: 'Monoton', cursive
-  color: #ff0080
-// .theme--dark.v-app-bar.v-toolbar.v-sheet
-//   background-color: #0a3154
+  color: $orange
+  text-shadow: 0 0 3px $med-pink, 0 0 5px $med-pink, 0 0 8px $med-pink, 0 0 10px $dark-pink, 0 0 18px $dark-pink
 .v-toolbar__title
   font-size: 2rem
 .theme--dark.v-card.v-card--outlined

@@ -8,22 +8,28 @@
           </h1>
         </v-col>
       </v-row>
-      <v-row cols="12">
-        <v-col class="my-5">
-          <h2
-            v-for="(text, i) in $store.getters.currentChallenge.fullText"
-            :key="text + i"
-            v-html="$options.filters.highlightFilter(
-              text,
-              userRegex,
-              userFlags,
-              $style
-            )"
-            style="white-space: pre;"
-            class="elevation-3 pa-4 mb-2"
-          >
-          </h2>
-        </v-col>
+
+      <v-row>
+        <div class="challenge-tray">
+          <div class="challenge-tray-inner">
+            <v-row cols="12">
+              <v-col class="my-5">
+                <h2
+                  v-for="(text, i) in $store.getters.currentChallenge.fullText"
+                  :key="text + i"
+                  v-html="$options.filters.highlightFilter(
+                    text,
+                    userRegex,
+                    userFlags,
+                    $style
+                  )"
+                  style="white-space: pre;"
+                >
+                </h2>
+              </v-col>
+            </v-row>
+          </div>
+        </div>
       </v-row>
 
       <v-row>
@@ -196,4 +202,9 @@ export default {
   border-radius: 0
 h1
   font-family: 'Baloo Thambi 2', sans-serif
+.challenge-tray
+  background: center center url('../assets/orange-tray2.png') no-repeat
+  background-size: 100% 80%
+.challenge-tray-inner
+  margin: 70px 50px
 </style>

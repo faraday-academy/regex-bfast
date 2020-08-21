@@ -33,11 +33,12 @@ describe('Body.vue', () => {
     // enter correct answer into input
     const input = wrapper.find('[data-test="regex"]')
     await input.setValue(challenges[0].pattern)
-    // press enter
-    input.trigger('keypress.enter.stop')
-    // check that nextChallenge has been called
     jest.spyOn(wrapper.vm, 'nextChallenge')
 
+    // press enter
+    input.trigger('keypress.enter.stop')
+
+    // check that nextChallenge has been called
     expect(wrapper.vm.nextChallenge)
       .toHaveBeenCalled()
   })

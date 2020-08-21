@@ -6,7 +6,7 @@ exports[`Body.vue snapshot 1`] = `
     <div cols="12" class="row">
       <div class="col">
         <h1>
-          currentChallenge
+          Match Text
         </h1>
       </div>
     </div>
@@ -14,7 +14,9 @@ exports[`Body.vue snapshot 1`] = `
       <div class="challenge-tray">
         <div class="challenge-tray-inner">
           <div cols="12" class="row">
-            <div class="my-5 col"></div>
+            <div class="my-5 col">
+              <h2 style="white-space: pre;"><span class="highlight"></span>oatmeal</h2>
+            </div>
           </div>
         </div>
       </div>
@@ -30,7 +32,7 @@ exports[`Body.vue snapshot 1`] = `
               <fieldset aria-hidden="true">
                 <legend style="width: 0px;"><span>​</span></legend>
               </fieldset>
-              <div class="v-text-field__slot"><input id="input-2" placeholder="Enter Regex" type="text"></div>
+              <div class="v-text-field__slot"><input data-test="regex" id="input-2" placeholder="Enter Regex" type="text"></div>
             </div>
             <div class="v-text-field__details">
               <div class="v-messages theme--light">
@@ -65,7 +67,7 @@ exports[`Body.vue snapshot 1`] = `
       <div class="col col-12">
         <div class="v-card v-card--outlined v-sheet v-sheet--tile theme--light">
           <div class="v-card__text"><i aria-hidden="true" class="v-icon notranslate mdi mdi-alert-circle-outline theme--light info--text"></i>
-
+            Regex will match characters from right to left. Type exact characters to match.
           </div>
         </div>
       </div>

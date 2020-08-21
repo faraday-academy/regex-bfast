@@ -35,6 +35,7 @@
       <v-row>
         <v-col cols="9">
           <v-text-field
+            data-test="regex"
             outlined
             :error="regexError"
             :error-messages="errorMessage"
@@ -89,7 +90,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import doesMatch from '@/utils/doesMatch'
 import doesNotMatch from '@/utils/doesNotMatch'
 

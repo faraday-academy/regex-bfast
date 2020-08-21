@@ -10,14 +10,12 @@ describe('TopBar.vue', () => {
         currentIndex: 0
       },
       getters: {
-        percentDone: () => 0
+        percentDone: 0
       }
     }
 
+    // TODO: get this to work with a full mount
     const wrapper = shallowMount(TopBar, {
-      propsData: {
-
-      },
       mocks: {
         $store
       }

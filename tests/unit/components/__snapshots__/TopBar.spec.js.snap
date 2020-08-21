@@ -9,7 +9,7 @@ exports[`TopBar.vue snapshot 1`] = `
     <v-spacer-stub></v-spacer-stub>
     <v-card-stub loaderheight="4" tag="div" outlined="true" rounded="">
       <v-card-text-stub class="white--text pa-2">
-        <v-progress-linear-stub color="#ec1a25" value="() => 0" active="true" buffervalue="100" height="10"></v-progress-linear-stub>
+        <v-progress-linear-stub color="#ec1a25" value="0" active="true" buffervalue="100" height="10"></v-progress-linear-stub>
         Challenge #1
         out of 0
       </v-card-text-stub>

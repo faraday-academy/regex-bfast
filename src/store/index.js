@@ -12,20 +12,20 @@ export default new Vuex.Store({
     challenges
   },
   getters: {
-    currentChallenge(state) {
+    currentChallenge (state) {
       return state.challenges[state.currentIndex]
     },
-    percentDone(state) {
+    percentDone (state) {
       return Math.floor((state.currentIndex) / state.challenges.length * 100)
     }
   },
   mutations: {
-    updateCurrentChallenge(state, index) {
+    updateCurrentChallenge (state, index) {
       state.currentIndex = index
     }
   },
   actions: {
-    navigateToChallenge({ commit, state }, index) {
+    navigateToChallenge ({ commit, state }, index) {
       const id = index + 1
       if (state.challenges.length >= id) {
         try {

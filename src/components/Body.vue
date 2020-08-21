@@ -94,7 +94,7 @@ import doesMatch from '@/utils/doesMatch'
 import doesNotMatch from '@/utils/doesNotMatch'
 
 export default {
-  data() {
+  data () {
     return {
       userRegex: '',
       userFlags: '',
@@ -109,10 +109,10 @@ export default {
     }
   },
   filters: {
-    highlightFilter(value, userRegex, userFlags, $style) {
+    highlightFilter (value, userRegex, userFlags, $style) {
       try {
-        let regex = new RegExp(userRegex, userFlags)
-        let newValue = value.replace(
+        const regex = new RegExp(userRegex, userFlags)
+        const newValue = value.replace(
           regex, (text) => `<span class="${$style.highlight}">${text}</span>`
         )
         return newValue
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    checkValidRegex() {
+    checkValidRegex () {
       try {
         new RegExp(this.userRegex, this.userFlags)
         this.regexError = false
@@ -132,10 +132,10 @@ export default {
         this.errorMessage = 'Invalid Regex'
       }
     },
-    nextChallenge() {
+    nextChallenge () {
       const { fullText, pattern, flags, forbiddenPatterns } = this.$store.getters.currentChallenge
 
-      let forbidden = forbiddenPatterns.some((value) => {
+      const forbidden = forbiddenPatterns.some((value) => {
         return this.userRegex.includes(value)
       })
       if (forbidden) {
@@ -143,9 +143,9 @@ export default {
         return false
       }
 
-      let currentIndex = this.$store.state.currentIndex
-      let solutionRegex = new RegExp(pattern, flags)
-      let userRegex = new RegExp(this.userRegex, this.userFlags)
+      const currentIndex = this.$store.state.currentIndex
+      const solutionRegex = new RegExp(pattern, flags)
+      const userRegex = new RegExp(this.userRegex, this.userFlags)
 
       let validFlags = false
       let isFullTextMatched = false
@@ -172,11 +172,11 @@ export default {
         this.showSnackbar('error')
       }
     },
-    showSnackbar(type) {
+    showSnackbar (type) {
       this.snackbar.color = type
       this.snackbar.show = true
 
-      switch(type) {
+      switch (type) {
         case 'error':
           this.snackbar.message = 'Incorrect answer. Try again.'
           break

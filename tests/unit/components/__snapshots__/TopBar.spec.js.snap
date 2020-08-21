@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar.vue snapshot 1`] = `
+<div>
+  <v-app-bar-stub dark="true" tag="header" tile="true" extensionheight="48" src="" value="true">
+    <v-toolbar-title-stub class="logo-text">
+      Regex Breakfast
+    </v-toolbar-title-stub>
+    <v-spacer-stub></v-spacer-stub>
+    <v-card-stub loaderheight="4" tag="div" outlined="true" rounded="">
+      <v-card-text-stub class="white--text pa-2">
+        <v-progress-linear-stub color="#ec1a25" value="() => 0" active="true" buffervalue="100" height="10"></v-progress-linear-stub>
+        Challenge #1
+        out of 0
+      </v-card-text-stub>
+    </v-card-stub>
+    <v-spacer-stub></v-spacer-stub>
+    <v-btn-stub tag="button" tile="true" activeclass="" outlined="true" type="button">
+      Challenges
+    </v-btn-stub>
+  </v-app-bar-stub>
+  <v-navigation-drawer-stub absolute="true" overlayopacity="0" height="100%" minivariantwidth="56" mobilebreakpoint="1264" right="true" src="" tag="aside" temporary="true" width="256" value="true">
+    <v-list-stub tag="div" tile="true" dense="true" nav="true">
+      <v-list-item-group-stub activeclass="deep-purple--text text--accent-4"></v-list-item-group-stub>
+    </v-list-stub>
+  </v-navigation-drawer-stub>
+</div>
+`;

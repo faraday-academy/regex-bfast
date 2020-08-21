@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Body.vue snapshot 1`] = `
+<div class="row">
+  <div class="col-sm-10 col-md-8 col">
+    <div cols="12" class="row">
+      <div class="col">
+        <h1>
+          currentChallenge
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="challenge-tray">
+        <div class="challenge-tray-inner">
+          <div cols="12" class="row">
+            <div class="my-5 col"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-9">
+        <div class="v-input theme--light v-text-field v-text-field--enclosed v-text-field--outlined v-text-field--placeholder">
+          <div class="v-input__prepend-outer">
+            /
+          </div>
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <fieldset aria-hidden="true">
+                <legend style="width: 0px;"><span>​</span></legend>
+              </fieldset>
+              <div class="v-text-field__slot"><input id="input-2" placeholder="Enter Regex" type="text"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--light">
+                <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+              </div>
+            </div>
+          </div>
+          <div class="v-input__append-outer">
+            /
+          </div>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="v-input v-input--is-disabled theme--light v-text-field v-text-field--enclosed v-text-field--outlined v-text-field--placeholder">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <fieldset aria-hidden="true">
+                <legend style="width: 0px;"><span>​</span></legend>
+              </fieldset>
+              <div class="v-text-field__slot"><input disabled="disabled" id="input-5" placeholder="Enter Flags" type="text"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--light">
+                <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12">
+        <div class="v-card v-card--outlined v-sheet v-sheet--tile theme--light">
+          <div class="v-card__text"><i aria-hidden="true" class="v-icon notranslate mdi mdi-alert-circle-outline theme--light info--text"></i>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <transition-stub name="v-snack-transition"></transition-stub>
+</div>
+`;

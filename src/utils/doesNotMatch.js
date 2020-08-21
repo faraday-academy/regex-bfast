@@ -1,5 +1,5 @@
 export default ({ fullText, solutionRegex, userRegex }) => {
-  let notToMatch = [...fullText]
+  const notToMatch = [...fullText]
 
   // removes characters that are supposed to be matched
   fullText.forEach((value, i) => {

@@ -1,6 +1,6 @@
 export default ({ fullText, solutionRegex, userRegex }) => {
-  let defaultMatches = []
-  let userMatches = []
+  const defaultMatches = []
+  const userMatches = []
   let unmatched = []
 
   // this loops through full text to populate an
